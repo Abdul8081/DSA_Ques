@@ -5,6 +5,7 @@ class Solution {
         //filling of the seive vector
         vector<int> seive(int upperLimit){
             vector<int> seive(upperLimit+1, 1); // initially assuming every digit is prime number
+            
             seive[0] = 0;
             seive[1] = 0;
     
