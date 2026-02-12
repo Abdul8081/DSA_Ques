@@ -1,0 +1,31 @@
+class Solution {
+  public:
+    long subarrayXor(vector<int> &arr, int k) {
+        // code here
+        // prev xor : currXor
+        // currXor ^ find = k
+        // take xor with currXor both side
+        // find = k ^ currXor
+        // so basically we needed to look for the find.
+        
+        int initial_start = 0;
+        unordered_map<int, int> prevXor;
+        prevXor[initial_start]++;
+        // keeping preXor : (0, 1) : xor with 0 -> always zero. 
+        long count = 0;
+        int currXor = 0;
+        for(int i=0; i<arr.size(); i++) {
+            currXor  = currXor ^ arr[i];
+            
+            // find x : 
+            int find = currXor ^ k;
+            
+            if(prevXor.count(find)) {
+                count += prevXor[find];
+            }
+            
+            prevXor[currXor]++;
+        }
+        return count;
+    }
+};
